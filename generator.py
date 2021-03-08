@@ -37,7 +37,7 @@ class BatchGenerator(Sequence):
             
     def __len__(self):
         return int(np.ceil(float(len(self.instances))/self.batch_size))           
-
+    # get one batch of data set
     def __getitem__(self, idx):
         # get image input size, change every 10 batches
         net_h, net_w = self._get_net_size(idx)
@@ -52,6 +52,7 @@ class BatchGenerator(Sequence):
             l_bound = r_bound - self.batch_size
 
         x_batch = np.zeros((r_bound - l_bound, net_h, net_w, 3))             # input images
+        # max_box_per_image 为所有图片中，最大边界框的个数
         t_batch = np.zeros((r_bound - l_bound, 1, 1, 1,  self.max_box_per_image, 4))   # list of groundtruth boxes
 
         # initialize the inputs and the outputs
