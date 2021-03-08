@@ -168,8 +168,8 @@ def create_model(
         train_model = template_model      
 
     optimizer = Adam(lr=lr, clipnorm=0.001)
-    train_model.compile(loss=dummy_loss, optimizer=optimizer)             
-
+    train_model.compile(loss=dummy_loss, optimizer=optimizer)
+    train_model.save("yolo3_train.h5")
     return train_model, infer_model
 
 def _main_(args):
