@@ -38,7 +38,8 @@ class YoloLayer(Layer):
 
         # adjust the shape of the y_predict from [batch, grid_h, grid_w, 3(4+1+nb_class)]
         # to [batch, grid_h, grid_w, 3, 4+1+nb_class]
-        new_y_pred_shape= tf.concat([tf.shape(y_pred)[:3], tf.constant([3, -1])], axis=0);
+        new_y_pred_shape= tf.concat([tf.shape(y_pred)[:3], tf.constant([3, -1])], axis=0)
+
         y_pred = tf.reshape(y_pred,new_y_pred_shape)
         
         # initialize the masks
